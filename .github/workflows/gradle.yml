@@ -8,10 +8,6 @@
 name: Java CI with Gradle
 
 on:
-  push:
-    branches: [ "*" ]
-  pull_request:
-    branches: [ "Client/fabric/1.21" ]
   workflow_dispatch:
 
 jobs:
@@ -24,6 +20,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Set Up Java
+      uses: actions/setup-java@v4.2.1
+      with:
+        java-version: "22"
+        distribution: "jdk"
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
